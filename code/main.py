@@ -38,18 +38,16 @@ else:
     world.cprint("not enable tensorflowboard")
 
 try:
-    best_res = {'recall':np.array([0., 0., 0.]), 'precision':np.array([0., 0., 0.]), 'ndcg':np.array([0., 0., 0.])}
     for epoch in range(world.TRAIN_epochs):
         start = time.time()
         # if epoch == 800:
         #     Recmodel.set_u2i_trans(True)
         #     Recmodel.set_i2u_trans(False)
-        if epoch %10 == 0:
-            cprint("[TEST]")
-            res = Procedure.Test(dataset, Recmodel, epoch, w, world.config['multicore'])
         output_information = Procedure.BPR_train_original(dataset, Recmodel, bpr, epoch, neg_k=Neg_k,w=w)
         print(f'EPOCH[{epoch+1}/{world.TRAIN_epochs}] {output_information}')
         torch.save(Recmodel.state_dict(), weight_file)
+    cprint("[TEST]")
+    res = Procedure.Test(dataset, Recmodel, epoch, w, world.config['multicore'])
 finally:
     if world.tensorboard:
         w.close()
