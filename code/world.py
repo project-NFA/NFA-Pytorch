@@ -8,7 +8,7 @@ import multiprocessing
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 args = parse_args()
 
-ROOT_PATH = "/home/wangyilin/WYL/NFA-PyTorch"
+ROOT_PATH = "/Users/apple/CodeLib/NFA-Pytorch"
 CODE_PATH = join(ROOT_PATH, 'code')
 DATA_PATH = join(ROOT_PATH, 'data')
 BOARD_PATH = join(CODE_PATH, 'runs')
